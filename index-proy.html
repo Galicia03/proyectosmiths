@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SmitsInterconnect - Monitor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color:#f0f8ff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .header {
+      background-color: #fff;
+      padding: 10px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #009;
+    }
+
+    .nav-bar {
+      display: flex;
+      border-bottom: 3px solid black;
+      background-color: #B5E3FC;
+    }
+
+    .nav-link-custom {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+      border: none;
+    }
+
+    .nav-link-custom.active {
+      background-color: #08A4F8;
+      font-weight: bold;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    .section-subtitle {
+      display: inline-block;
+      border: 2px solid black;
+      padding: 5px 25px;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .temperature {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .fan-card {
+      border: 2px solid black;
+      padding: 15px;
+      position: relative;
+      text-align: center;
+      background-color: #fff;
+    }
+
+    .icon-row {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 30px;
+      left: 80px;
+      right: 80px;
+    }
+
+    .fan-icon {
+      font-size: 60px;
+      margin: 40px 0 10px;
+    }
+
+    .fan-label {
+      font-size: 14px;
+      font-weight: bold;
+	  text-align:left;
+    }
+
+    .btn-plan {
+      margin-top: 10px;
+      border: 2px solid black;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      background-color: transparent;
+      border: none;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <img src="img/smiths_interconnect.png" alt="Smiths Interconnect" style="max-height: 20px;">
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-bar">
+    <a href="#monitor" class="nav-link-custom active" id="monitor-tab">Monitor</a>
+    <a href="#mantenimiento" class="nav-link-custom" id="mantenimiento-tab">Mantenimiento</a>
+  </div>
+
+  <!-- Content Sections -->
+  <div id="monitor" class="container text-center mt-4">
+    <div class="section-title">Monitor</div>
+    <div class="section-subtitle">Área de producción</div>
+    <p class="temperature"> 🌡 Temperatura actual: __ °C</p>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-3 m-2">
+        <div class="fan-card">
+		<div class="fan-label">A1</div>
+          <div class="icon-row">
+			  <button class="icon-btn"><i class="bi bi-tools"></i></button>
+			  <button class="icon-btn"><i class="bi bi-exclamation-triangle"></i></button>
+			</div>
+          <div class="fan-icon">
+			  <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
+		</div>
+
+          
+          <button class="btn btn-outline-dark btn-sm btn-plan">Plan de mantenimiento</button>
+        </div>
+      </div>
+
+      <div class="col-md-3 m-2">
+        <div class="fan-card">
+		<div class="fan-label">A2</div>
+          <div class="icon-row">
+			  <button class="icon-btn"><i class="bi bi-tools"></i></button>
+			  <button class="icon-btn"><i class="bi bi-exclamation-triangle"></i></button>
+			</div>
+           <div class="fan-icon">
+			  <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
+		</div>
+          
+          <button class="btn btn-outline-dark btn-sm btn-plan">Plan de mantenimiento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección mantenimiento (oculta por defecto, se puede usar JS para cambiar visibilidad) -->
+  <div id="mantenimiento" class="container text-center mt-5" style="display: none;">
+    <h2>Sección de Mantenimiento</h2>
+    <p>Aquí irá la información de mantenimiento...</p>
+  </div>
+
+  <button class="icon-btn" style="position: fixed; bottom: 20px; right: 20px;">
+  <i class="bi bi-plus"></i>
+</button>
+
+  <!-- JS para cambiar tabs -->
+  <script>
+    const monitorTab = document.getElementById('monitor-tab');
+    const mantenimientoTab = document.getElementById('mantenimiento-tab');
+    const monitorSection = document.getElementById('monitor');
+    const mantenimientoSection = document.getElementById('mantenimiento');
+
+    monitorTab.addEventListener('click', () => {
+      monitorTab.classList.add('active');
+      mantenimientoTab.classList.remove('active');
+      monitorSection.style.display = 'block';
+      mantenimientoSection.style.display = 'none';
+    });
+
+    mantenimientoTab.addEventListener('click', () => {
+      mantenimientoTab.classList.add('active');
+      monitorTab.classList.remove('active');
+      monitorSection.style.display = 'none';
+      mantenimientoSection.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
+
