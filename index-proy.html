@@ -24,37 +24,34 @@
             display: flex;
             border-bottom: 3px solid black;
             background-color: #B5E3FC;
-			text-align: center!important; 
         }
 
         .nav-link-custom {
             flex: 1;
             padding: 15px;
-            text-align: center!important; /* Aseguramos el centrado del texto */
+            text-align: center;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
             color: black;
             border: none;
-            transition: background-color 0.3s ease; /* Transición suave para el hover */
+            transition: background-color 0.3s ease;
         }
 
         .nav-link-custom:hover {
-            background-color: #8acdfc; /* Color más claro al pasar el ratón */
-			text-align: center!important; 
+            background-color: #8acdfc;
         }
 
         .nav-link-custom.active {
             background-color: #08A4F8;
             font-weight: bold;
-			text-align: center!important; 
         }
 
         .section-title {
             font-size: 16px;
             font-weight: bold;
             margin-top: 30px;
-			text-align:center;
+            text-align: center;
         }
 
         .section-subtitle {
@@ -64,7 +61,7 @@
             font-size: 22px;
             font-weight: bold;
             margin-top: 10px;
-			text-align: center!important; 
+            text-align: center;
         }
 
         .temperature {
@@ -78,31 +75,45 @@
             position: relative;
             text-align: center;
             background-color: #fff;
-            border-radius: 8px; /* Bordes redondeados para las tarjetas */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .icon-row {
             display: flex;
-            justify-content: space-around; /* Distribuir uniformemente y centrar los iconos */
+            justify-content: space-around;
             position: absolute;
-            top: 15px; /* Ajustado para mejor posicionamiento */
-            left: 20px; /* Reducido para acercar los iconos al centro */
-            right: 20px; /* Reducido para acercar los iconos al centro */
+            top: 15px;
+            left: 20px;
+            right: 20px;
         }
 
         .icon-row .icon-btn {
             background: none;
             border: none;
-            font-size: 24px; /* Iconos más grandes */
-            color: #333; /* Color oscuro para los iconos */
+            font-size: 24px;
+            color: #333;
             cursor: pointer;
             transition: color 0.2s ease;
-            padding: 0 5px; /* Pequeño padding para mejorar clicabilidad */
+            padding: 0 5px;
+            position: relative; /* Necesario para posicionar el badge */
         }
 
         .icon-row .icon-btn:hover {
-            color: #08A4F8; /* Color al pasar el ratón */
+            color: #08A4F8;
+        }
+
+        /* Estilo para el badge de alerta en el icono de herramientas */
+        .maintenance-alert-badge {
+            position: absolute;
+            top: -2px; /* Ajusta la posición vertical */
+            right: -2px; /* Ajusta la posición horizontal */
+            width: 12px;
+            height: 12px;
+            background-color: red;
+            border-radius: 50%;
+            display: none; /* Oculto por defecto */
+            border: 2px solid white; /* Pequeño borde blanco para visibilidad */
         }
 
         .fan-icon {
@@ -119,21 +130,21 @@
         .btn-plan {
             margin-top: 10px;
             border: 2px solid black;
-            background-color: #08A4F8; /* Color de botón para que resalte */
+            background-color: #08A4F8;
             color: white;
             font-weight: bold;
             transition: background-color 0.2s ease;
         }
 
         .btn-plan:hover {
-            background-color: #007bff; /* Color al pasar el ratón */
-            color: white; /* Mantener texto blanco */
+            background-color: #007bff;
+            color: white;
         }
 
         /* Estilos para los botones de mantenimiento */
         .maintenance-button {
-            width: 80%;  
-            margin: 15px auto;  
+            width: 80%;
+            margin: 15px auto;
             padding: 20px;
             font-size: 20px;
             font-weight: bold;
@@ -153,12 +164,13 @@
         /* Estilo para la flecha de regreso */
         .back-arrow {
             position: absolute;
-            top: 50px;
+            top: 70px; /* Ajustado para bajar la flecha */
             left: 20px;
             font-size: 30px;
             color: #333;
             cursor: pointer;
             transition: color 0.2s ease;
+            z-index: 10;
         }
 
         .back-arrow:hover {
@@ -175,9 +187,9 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px; /* Tamaño del botón */
-            height: 60px; /* Tamaño del botón */
-            border-radius: 50%; /* Forma circular */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             background-color: #08A4F8;
             color: white;
             font-size: 30px;
@@ -187,7 +199,7 @@
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
-            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+            z-index: 1000;
         }
 
         .floating-add-btn:hover {
@@ -212,8 +224,8 @@
         }
 
         #historial-content .table-container {
-            max-height: 400px; /* Altura máxima para la tabla */
-            overflow-y: auto; /* Barra de desplazamiento vertical */
+            max-height: 400px;
+            overflow-y: auto;
             border: 1px solid #ccc;
         }
 
@@ -242,7 +254,7 @@
         }
 
         #registrar-content .btn-submit {
-            background-color: #28a745; /* Botón verde para enviar */
+            background-color: #28a745;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -257,22 +269,64 @@
         }
 
         /* Estilos para planes de mantenimiento */
-        #planes-content .maintenance-plan-item {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            text-align: left;
-        }
-        #planes-content .maintenance-plan-item h5 {
-            color: #08A4F8;
-            font-weight: bold;
-        }
         #planes-content .air-select-container {
             margin-bottom: 20px;
             text-align: left;
         }
+
+        /* Estilo para las secciones de planes (similar a la imagen) */
+        .plan-section-box {
+            border: 2px solid black;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .plan-section-box h4 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Estilo para el plan de mantenimiento individual (similar a la imagen) */
+        .single-plan-entry {
+            display: flex;
+            border: 1px solid #000;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .single-plan-entry .plan-date-col {
+            flex: 0 0 120px; /* Ancho fijo para la fecha */
+            padding: 8px;
+            border-right: 1px solid #000;
+            font-weight: bold;
+            background-color: #f2f2f2; /* Un poco de sombreado para la fecha */
+        }
+
+        .single-plan-entry .plan-type-col {
+            flex-grow: 1;
+            padding: 8px;
+        }
+
+        /* Estilo para la lista de futuros mantenimientos */
+        .future-plans-list {
+            max-height: 250px; /* Altura máxima para la lista con scroll */
+            overflow-y: auto;
+            border: 1px solid #ccc; /* Borde para la lista, si se desea */
+        }
+
+        /* Resaltar planes próximos o atrasados */
+        .single-plan-entry.due-soon {
+            background-color: #fff8e1; /* Fondo amarillo claro */
+            border-left: 4px solid orange;
+        }
+        .single-plan-entry.overdue {
+            background-color: #ffebee; /* Fondo rojo claro */
+            border-left: 4px solid red;
+        }
+
     </style>
 </head>
 <body>
@@ -282,7 +336,7 @@
     </div>
 
     <div class="nav-bar">
-        <a href="#monitor" class="nav-link-custom active" id="monitor-tab" >Monitor</a>
+        <a href="#monitor" class="nav-link-custom active" id="monitor-tab">Monitor</a>
         <a href="#mantenimiento" class="nav-link-custom" id="mantenimiento-tab">Mantenimiento</a>
     </div>
 
@@ -296,7 +350,10 @@
                 <div class="fan-card">
                     <div class="fan-label">A1</div>
                     <div class="icon-row">
-                        <button class="icon-btn" title="Historial A1"><i class="bi bi-tools"></i></button>
+                        <button class="icon-btn" title="Historial A1">
+                            <i class="bi bi-tools"></i>
+                            <span class="maintenance-alert-badge" id="alert-a1-tools"></span>
+                        </button>
                         <button class="icon-btn" title="Alerta A1"><i class="bi bi-exclamation-triangle"></i></button>
                     </div>
                     <div class="fan-icon">
@@ -311,7 +368,10 @@
                 <div class="fan-card">
                     <div class="fan-label">A2</div>
                     <div class="icon-row">
-                        <button class="icon-btn" title="Historial A2"><i class="bi bi-tools"></i></button>
+                        <button class="icon-btn" title="Historial A2">
+                            <i class="bi bi-tools"></i>
+                            <span class="maintenance-alert-badge" id="alert-a2-tools"></span>
+                        </button>
                         <button class="icon-btn" title="Alerta A2"><i class="bi bi-exclamation-triangle"></i></button>
                     </div>
                     <div class="fan-icon">
@@ -327,20 +387,20 @@
     <div id="mantenimiento-section" class="container text-center mt-5 content-section">
         <div class="section-title">Opciones de Mantenimiento</div>
         <div class="row justify-content-center mt-4">
-            <div class="col-md-12">
+            <div class="col-12">
                 <button class="btn maintenance-button" onclick="showContent('historial')">Historial</button>
             </div>
-            <div class="col-md-12">
+            <div class="col-12">
                 <button class="btn maintenance-button" onclick="showContent('registrar')">Registrar</button>
             </div>
-            <div class="col-md-12">
+            <div class="col-12">
                 <button class="btn maintenance-button" onclick="showContent('planes')">Planes de Mantenimiento</button>
             </div>
         </div>
     </div>
 
     <div id="historial-content" class="container mt-5 content-section">
-        <i class="bi bi-arrow-left back-arrow" onclick="goBackToMantenimiento()"  title="Regresar"></i>
+        <i class="bi bi-arrow-left back-arrow" onclick="goBackToMantenimiento()" title="Regresar"></i>
         <h2 class="text-center mb-4">Historial de Mantenimientos</h2>
 
         <div class="input-group mb-3 search-bar">
@@ -363,7 +423,7 @@
                     <tr>
                         <td>2024-05-20</td>
                         <td>A1</td>
-                        <td>Preventivo</td>
+                        <td>Preventivo (3 Meses)</td>
                         <td>Juan Pérez</td>
                         <td><a href="#">Ver archivo</a></td>
                     </tr>
@@ -384,7 +444,7 @@
                      <tr>
                         <td>2024-05-01</td>
                         <td>A2</td>
-                        <td>Preventivo</td>
+                        <td>Preventivo (6 Meses)</td>
                         <td>Juan Pérez</td>
                         <td><a href="#">Ver archivo</a></td>
                     </tr>
@@ -398,7 +458,7 @@
                      <tr>
                         <td>2024-04-18</td>
                         <td>A2</td>
-                        <td>Preventivo</td>
+                        <td>Preventivo (3 Meses)</td>
                         <td>Carlos Ruíz</td>
                         <td><a href="#">Ver archivo</a></td>
                     </tr>
@@ -434,7 +494,8 @@
                         <label for="tipoMantenimiento">Tipo de Mantenimiento:</label>
                         <select class="form-select" id="tipoMantenimiento" required>
                             <option value="">Selecciona el tipo</option>
-                            <option value="Preventivo">Preventivo</option>
+                            <option value="Preventivo (3 Meses)">Preventivo (3 Meses)</option>
+                            <option value="Preventivo (6 Meses)">Preventivo (6 Meses)</option>
                             <option value="Correctivo">Correctivo</option>
                             <option value="Emergencia">Emergencia</option>
                         </select>
@@ -470,8 +531,20 @@
                     </select>
                 </div>
 
-                <div id="maintenance-plans-display">
+                <div class="plan-section-box mb-4">
+                    <h4 class="text-center">Próximo mantenimiento</h4>
+                    <div id="next-maintenance-display">
+                        <p class="text-center">Selecciona un aire o no hay mantenimientos próximos.</p>
                     </div>
+                </div>
+
+                <div class="plan-section-box">
+                    <h4 class="text-center">Futuros mantenimientos</h4>
+                    <div id="future-maintenances-display" class="future-plans-list">
+                        <p class="text-center">Selecciona un aire para ver los mantenimientos futuros.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -500,22 +573,31 @@
         // Referencia al botón flotante de agregar
         const floatingAddBtn = document.querySelector('.floating-add-btn');
 
+        // Función para formatear fechas a DD/MM/YYYY
+        function formatDateToDDMMYYYY(dateString) {
+            const date = new Date(dateString + 'T00:00:00'); // Añadir T00:00:00 para evitar problemas de zona horaria
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses son 0-index
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+
         // Función para mostrar/ocultar secciones
         function showSection(sectionToShow) {
             const sections = [monitorSection, mantenimientoSection, historialContent, registrarContent, planesContent];
             sections.forEach(section => {
                 section.style.display = 'none';
-                section.classList.remove('active-section'); // Quita la clase activa
+                section.classList.remove('active-section');
             });
 
             sectionToShow.style.display = 'block';
-            sectionToShow.classList.add('active-section'); // Agrega la clase activa
+            sectionToShow.classList.add('active-section');
 
             // Control del botón flotante
             if (sectionToShow === monitorSection || sectionToShow === mantenimientoSection) {
-                floatingAddBtn.style.display = 'block'; // Mostrar el botón flotante en Monitor y Mantenimiento
+                floatingAddBtn.style.display = 'block';
             } else {
-                floatingAddBtn.style.display = 'none'; // Ocultar en las subsecciones
+                floatingAddBtn.style.display = 'none';
             }
         }
 
@@ -524,6 +606,7 @@
             showSection(monitorSection);
             monitorTab.classList.add('active');
             mantenimientoTab.classList.remove('active');
+            checkMaintenanceAlerts(); // Vuelve a verificar las alertas al cambiar al monitor
         });
 
         mantenimientoTab.addEventListener('click', () => {
@@ -534,17 +617,16 @@
 
         // Función para mostrar el contenido específico de Mantenimiento (Historial, Registrar, Planes)
         function showContent(contentId) {
-            showSection(document.getElementById(contentId + '-content')); // Muestra la sub-sección
-            // Oculta las pestañas de navegación principales si estás en una subsección de mantenimiento
+            showSection(document.getElementById(contentId + '-content'));
             monitorTab.style.display = 'none';
             mantenimientoTab.style.display = 'none';
 
-            // Actualizar la gráfica si se va a Historial
             if (contentId === 'historial') {
                 updateMaintenanceChart();
             }
-            // Mostrar planes si se va a Planes
             if (contentId === 'planes') {
+                // Asegurarse de que el select de aire esté vacío por defecto al entrar
+                document.getElementById('selectAirPlan').value = "";
                 displayMaintenancePlans();
             }
         }
@@ -552,18 +634,19 @@
         // Función para regresar a la sección principal de Mantenimiento
         function goBackToMantenimiento() {
             showSection(mantenimientoSection);
-            // Vuelve a mostrar las pestañas de navegación principales
             monitorTab.style.display = '';
             mantenimientoTab.style.display = '';
-            mantenimientoTab.classList.add('active'); // Asegura que la pestaña de Mantenimiento esté activa
+            mantenimientoTab.classList.add('active');
             monitorTab.classList.remove('active');
+            void monitorTab.offsetWidth;
+            void mantenimientoTab.offsetWidth;
         }
 
         // Función para mostrar planes directamente desde la tarjeta del aire
         function showPlanes(airId) {
             showContent('planes');
-            document.getElementById('selectAirPlan').value = airId; // Selecciona el aire en el dropdown
-            displayMaintenancePlans(); // Muestra los planes para ese aire
+            document.getElementById('selectAirPlan').value = airId;
+            displayMaintenancePlans();
         }
 
 
@@ -573,22 +656,22 @@
 
         // Datos de ejemplo para el historial (puedes reemplazarlos con datos reales de tu backend)
         let maintenanceHistory = [
-            { fecha: '2024-05-20', aire: 'A1', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
-            { fecha: '2024-05-15', aire: 'A2', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
-            { fecha: '2024-05-10', aire: 'A1', tipo: 'Correctivo', supervisor: 'Carlos Ruíz', archivo: '#' },
-            { fecha: '2024-05-01', aire: 'A2', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
-            { fecha: '2024-04-25', aire: 'A1', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
-            { fecha: '2024-04-18', aire: 'A2', tipo: 'Preventivo', supervisor: 'Carlos Ruíz', archivo: '#' },
-            { fecha: '2024-04-10', aire: 'A1', tipo: 'Preventivo', supervisor: 'Laura López', archivo: '#' },
-            { fecha: '2024-03-20', aire: 'A2', tipo: 'Emergencia', supervisor: 'Pedro Gómez', archivo: '#' },
-            { fecha: '2024-03-05', aire: 'A1', tipo: 'Correctivo', supervisor: 'Marta Díaz', archivo: '#' },
-            { fecha: '2024-02-15', aire: 'A2', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
-            { fecha: '2024-01-30', aire: 'A1', tipo: 'Preventivo', supervisor: 'Ana García', archivo: '#' },
-            { fecha: '2024-01-05', aire: 'A2', tipo: 'Emergencia', supervisor: 'Carlos Ruíz', archivo: '#' },
+            { fecha: '2025-05-20', aire: 'A1', tipo: 'Preventivo (3 Meses)', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2025-05-15', aire: 'A2', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2025-05-10', aire: 'A1', tipo: 'Correctivo', supervisor: 'Carlos Ruíz', archivo: '#' },
+            { fecha: '2025-05-01', aire: 'A2', tipo: 'Preventivo (6 Meses)', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2025-04-25', aire: 'A1', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2025-04-18', aire: 'A2', tipo: 'Preventivo (3 Meses)', supervisor: 'Carlos Ruíz', archivo: '#' },
+            { fecha: '2025-04-10', aire: 'A1', tipo: 'Preventivo (3 Meses)', supervisor: 'Laura López', archivo: '#' },
+            { fecha: '2025-03-20', aire: 'A2', tipo: 'Emergencia', supervisor: 'Pedro Gómez', archivo: '#' },
+            { fecha: '2025-03-05', aire: 'A1', tipo: 'Correctivo', supervisor: 'Marta Díaz', archivo: '#' },
+            { fecha: '2025-02-15', aire: 'A2', tipo: 'Preventivo (6 Meses)', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2025-01-30', aire: 'A1', tipo: 'Preventivo (3 Meses)', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2025-01-05', aire: 'A2', tipo: 'Emergencia', supervisor: 'Carlos Ruíz', archivo: '#' },
         ];
 
         function renderHistorialTable(data) {
-            historialTableBody.innerHTML = ''; // Limpiar la tabla
+            historialTableBody.innerHTML = '';
             data.forEach(item => {
                 const row = historialTableBody.insertRow();
                 row.insertCell().textContent = item.fecha;
@@ -600,7 +683,6 @@
             });
         }
 
-        // Filtro de búsqueda
         historialSearch.addEventListener('keyup', () => {
             const searchTerm = historialSearch.value.toLowerCase();
             const filteredData = maintenanceHistory.filter(item =>
@@ -612,16 +694,14 @@
             renderHistorialTable(filteredData);
         });
 
-        // Inicializar la tabla al cargar el historial
         renderHistorialTable(maintenanceHistory);
 
         // --- Gráfica de Mantenimientos (Chart.js) ---
-        let maintenanceChart; // Declarar la variable globalmente para poder destruirla y recrearla
+        let maintenanceChart;
 
         function updateMaintenanceChart() {
             const ctx = document.getElementById('mantenimientoChart').getContext('2d');
 
-            // Contar tipos de mantenimiento
             const maintenanceTypes = {};
             maintenanceHistory.forEach(item => {
                 maintenanceTypes[item.tipo] = (maintenanceTypes[item.tipo] || 0) + 1;
@@ -630,12 +710,11 @@
             const labels = Object.keys(maintenanceTypes);
             const data = Object.values(maintenanceTypes);
 
-            // Colores personalizados
             const backgroundColors = [
-                'rgba(255, 99, 132, 0.6)', // Emergencia (Rojo)
-                'rgba(54, 162, 235, 0.6)', // Preventivo (Azul)
-                'rgba(255, 206, 86, 0.6)', // Correctivo (Amarillo)
-                'rgba(75, 192, 192, 0.6)', // Otros
+                'rgba(255, 99, 132, 0.6)', /* Emergencia */
+                'rgba(54, 162, 235, 0.6)', /* Preventivo 3 meses */
+                'rgba(255, 206, 86, 0.6)', /* Preventivo 6 meses */
+                'rgba(75, 192, 192, 0.6)', /* Correctivo */
             ];
             const borderColors = [
                 'rgba(255, 99, 132, 1)',
@@ -645,27 +724,29 @@
             ];
 
             if (maintenanceChart) {
-                maintenanceChart.destroy(); // Destruir la instancia anterior si existe
+                maintenanceChart.destroy();
             }
 
             maintenanceChart = new Chart(ctx, {
-                type: 'bar', // Puedes cambiar a 'pie', 'doughnut', etc.
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: '# de Mantenimientos',
                         data: data,
                         backgroundColor: labels.map(label => {
-                            if (label === 'Emergencia') return backgroundColors[0];
-                            if (label === 'Preventivo') return backgroundColors[1];
-                            if (label === 'Correctivo') return backgroundColors[2];
-                            return backgroundColors[3]; // Para otros tipos
+                            if (label.includes('Emergencia')) return backgroundColors[0];
+                            if (label.includes('Preventivo (3 Meses)')) return backgroundColors[1];
+                            if (label.includes('Preventivo (6 Meses)')) return backgroundColors[2];
+                            if (label.includes('Correctivo')) return backgroundColors[3];
+                            return backgroundColors[0]; // Default
                         }),
                         borderColor: labels.map(label => {
-                            if (label === 'Emergencia') return borderColors[0];
-                            if (label === 'Preventivo') return borderColors[1];
-                            if (label === 'Correctivo') return borderColors[2];
-                            return borderColors[3];
+                            if (label.includes('Emergencia')) return borderColors[0];
+                            if (label.includes('Preventivo (3 Meses)')) return borderColors[1];
+                            if (label.includes('Preventivo (6 Meses)')) return borderColors[2];
+                            if (label.includes('Correctivo')) return borderColors[3];
+                            return borderColors[0]; // Default
                         }),
                         borderWidth: 1
                     }]
@@ -677,13 +758,13 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                precision: 0 // Asegura que los ticks sean enteros
+                                precision: 0
                             }
                         }
                     },
                     plugins: {
                         legend: {
-                            display: false // No mostrar la leyenda si solo hay un dataset
+                            display: false
                         },
                         title: {
                             display: true,
@@ -699,92 +780,228 @@
         const registroForm = document.getElementById('registro-form');
 
         registroForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Evitar el envío por defecto del formulario
+            event.preventDefault();
 
             const fecha = document.getElementById('fechaMantenimiento').value;
             const aire = document.getElementById('aireSeleccionado').value;
             const tipo = document.getElementById('tipoMantenimiento').value;
             const supervisor = document.getElementById('supervisor').value;
             const archivoInput = document.getElementById('archivoMantenimiento');
-            const archivo = archivoInput.files.length > 0 ? archivoInput.files[0].name : 'N/A'; // Nombre del archivo o 'N/A'
+            const archivo = archivoInput.files.length > 0 ? archivoInput.files[0].name : 'N/A';
 
             if (fecha && aire && tipo && supervisor) {
-                // Aquí deberías enviar estos datos a tu backend o base de datos.
-                // Por ahora, solo lo agregaremos a nuestra simulación de historial.
                 const newMaintenance = {
                     fecha: fecha,
                     aire: aire,
                     tipo: tipo,
                     supervisor: supervisor,
-                    archivo: '#' // En una aplicación real, esto sería la URL del archivo subido
+                    archivo: '#'
                 };
-                maintenanceHistory.push(newMaintenance); // Agrega al historial simulado
-                renderHistorialTable(maintenanceHistory); // Actualiza la tabla del historial
+                maintenanceHistory.push(newMaintenance);
+                renderHistorialTable(maintenanceHistory);
+
+                // Lógica para actualizar maintenanceConfigs basado en el nuevo registro
+                if (maintenanceConfigs[aire]) {
+                    if (tipo === 'Preventivo (3 Meses)') {
+                        maintenanceConfigs[aire]['Preventivo (3 Meses)'].lastMaintenanceDate = fecha;
+                    } else if (tipo === 'Preventivo (6 Meses)') {
+                        maintenanceConfigs[aire]['Preventivo (6 Meses)'].lastMaintenanceDate = fecha;
+                    } else if (tipo === 'Correctivo' || tipo === 'Emergencia') {
+                        // Si se hace un correctivo o emergencia, reinicia el contador del preventivo de 6 meses
+                        maintenanceConfigs[aire]['Preventivo (6 Meses)'].lastMaintenanceDate = fecha;
+                    }
+                }
 
                 alert('Mantenimiento registrado con éxito: ' + JSON.stringify(newMaintenance));
-                registroForm.reset(); // Limpiar el formulario
-                goBackToMantenimiento(); // Regresar a la sección de mantenimiento
+                registroForm.reset();
+                goBackToMantenimiento();
+                checkMaintenanceAlerts(); // Re-verifica las alertas después de registrar
             } else {
                 alert('Por favor, completa todos los campos obligatorios.');
             }
         });
 
-        // --- Lógica para Planes de Mantenimiento ---
+        // --- Lógica para Planes de Mantenimiento (basado en la imagen) ---
         const selectAirPlan = document.getElementById('selectAirPlan');
-        const maintenancePlansDisplay = document.getElementById('maintenance-plans-display');
+        const nextMaintenanceDisplay = document.getElementById('next-maintenance-display');
+        const futureMaintenancesDisplay = document.getElementById('future-maintenances-display');
 
-        const allMaintenancePlans = {
-            'A1': [
-                { type: 'Preventivo', frequency: 'Cada 6 meses', description: 'Revisión general, limpieza de filtros, verificación de niveles.' },
-                { type: 'Correctivo', frequency: 'Según sea necesario', description: 'Reparación de fallas detectadas, reemplazo de componentes.' },
-                { type: 'Emergencia', frequency: 'Cuando está averiado', description: 'Atención inmediata a fallas críticas que detienen el funcionamiento.' }
-            ],
-            'A2': [
-                { type: 'Preventivo', frequency: 'Cada 6 meses', description: 'Revisión general, limpieza de filtros, verificación de niveles.' },
-                { type: 'Correctivo', frequency: 'Según sea necesario', description: 'Reparación de fallas detectadas, reemplazo de componentes.' },
-                { type: 'Emergencia', frequency: 'Cuando está averiado', description: 'Atención inmediata a fallas críticas que detienen el funcionamiento.' }
-            ]
+        // Datos de planes de mantenimiento con fechas de ÚLTIMO mantenimiento
+        const maintenanceConfigs = {
+            'A1': {
+                'Preventivo (3 Meses)': { lastMaintenanceDate: '2025-03-01', frequencyMonths: 3, description: 'Revisión ligera, limpieza de filtros pequeños.' },
+                'Preventivo (6 Meses)': { lastMaintenanceDate: '2024-12-01', frequencyMonths: 6, description: 'Revisión general, limpieza de filtros grandes, verificación de niveles, lubricación.' }
+            },
+            'A2': {
+                'Preventivo (3 Meses)': { lastMaintenanceDate: '2025-02-15', frequencyMonths: 3, description: 'Revisión ligera, limpieza de filtros pequeños.' },
+                'Preventivo (6 Meses)': { lastMaintenanceDate: '2025-01-10', frequencyMonths: 6, description: 'Revisión general, limpieza de filtros grandes, verificación de niveles, lubricación.' }
+            }
         };
+
+        // Función auxiliar para calcular la próxima fecha programada y futuras
+        function calculateAllUpcomingDates(airId) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const upcomingPlans = [];
+            const config = maintenanceConfigs[airId];
+
+            if (!config) return [];
+
+            for (const type in config) {
+                const plan = config[type];
+                let lastDate = new Date(plan.lastMaintenanceDate + 'T00:00:00'); // Asegurarse de que es la fecha correcta
+
+                // Calcular la próxima fecha programada a partir de la última fecha de mantenimiento
+                let nextDate = new Date(lastDate);
+                nextDate.setMonth(nextDate.getMonth() + plan.frequencyMonths);
+
+                // Generar futuras ocurrencias si la próxima fecha ya pasó
+                while (nextDate < today) {
+                    nextDate.setMonth(nextDate.getMonth() + plan.frequencyMonths);
+                }
+
+                // Recopilar hasta X futuras ocurrencias (ej. 5-10 para llenar la lista)
+                for (let i = 0; i < 5; i++) { // Generar 5 ocurrencias futuras
+                    upcomingPlans.push({
+                        date: new Date(nextDate),
+                        type: type,
+                        description: plan.description,
+                        air: airId
+                    });
+                    nextDate.setMonth(nextDate.getMonth() + plan.frequencyMonths);
+                }
+            }
+            // Filtrar las fechas que ya pasaron antes de ordenarlas, exceptuando el próximo si es hoy o atrasado
+            // Luego, ordenar por fecha
+            upcomingPlans.sort((a, b) => a.date - b.date);
+
+            return upcomingPlans;
+        }
+
 
         function displayMaintenancePlans() {
             const selectedAir = selectAirPlan.value;
-            maintenancePlansDisplay.innerHTML = ''; // Limpiar el contenido anterior
+            nextMaintenanceDisplay.innerHTML = '';
+            futureMaintenancesDisplay.innerHTML = '';
 
-            let plansToDisplay = [];
-            if (selectedAir && allMaintenancePlans[selectedAir]) {
-                plansToDisplay = allMaintenancePlans[selectedAir];
-            } else {
-                // Si no se selecciona un aire o se selecciona "Todos los aires", mostrar todos
-                for (const air in allMaintenancePlans) {
-                    allMaintenancePlans[air].forEach(plan => {
-                        plansToDisplay.push({ ...plan, air: air }); // Agregar el aire al objeto del plan
-                    });
-                }
+            if (!selectedAir) {
+                nextMaintenanceDisplay.innerHTML = '<p class="text-center">Selecciona un aire para ver sus planes de mantenimiento.</p>';
+                futureMaintenancesDisplay.innerHTML = '<p class="text-center">Selecciona un aire para ver sus planes de mantenimiento.</p>';
+                return;
             }
 
-            if (plansToDisplay.length > 0) {
-                plansToDisplay.forEach(plan => {
-                    const planItem = document.createElement('div');
-                    planItem.classList.add('maintenance-plan-item');
-                    let airLabel = plan.air ? ` (${plan.air})` : ''; // Mostrar el aire si se muestran todos
-                    planItem.innerHTML = `
-                        <h5>${plan.type} ${airLabel}</h5>
-                        <p><strong>Frecuencia:</strong> ${plan.frequency}</p>
-                        <p>${plan.description}</p>
+            const allUpcomingPlansForAir = calculateAllUpcomingDates(selectedAir);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Filtrar solo los planes que aún no han pasado
+            const relevantPlans = allUpcomingPlansForAir.filter(plan => plan.date >= today);
+
+            if (relevantPlans.length === 0) {
+                nextMaintenanceDisplay.innerHTML = '<p class="text-center">No hay mantenimientos próximos o futuros para este aire.</p>';
+                return;
+            }
+
+            const nextPlan = relevantPlans[0]; // El más próximo es el primero después de ordenar
+            nextMaintenanceDisplay.innerHTML = `
+                <div class="single-plan-entry">
+                    <div class="plan-date-col">${formatDateToDDMMYYYY(nextPlan.date.toISOString().split('T')[0])}</div>
+                    <div class="plan-type-col">${nextPlan.type}</div>
+                </div>
+            `;
+            // Añadir clase de resaltado si está próximo o atrasado
+            const nextPlanDateObj = new Date(nextPlan.date);
+            const diffTime = nextPlanDateObj - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            if (diffDays >= 0 && diffDays <= 10) {
+                nextMaintenanceDisplay.querySelector('.single-plan-entry').classList.add('due-soon');
+            } else if (diffDays < 0) {
+                nextMaintenanceDisplay.querySelector('.single-plan-entry').classList.add('overdue');
+            }
+
+
+            // Futuros mantenimientos (todos excepto el más próximo)
+            if (relevantPlans.length > 1) {
+                relevantPlans.slice(1).forEach(plan => {
+                    const planDiv = document.createElement('div');
+                    planDiv.classList.add('single-plan-entry');
+
+                    const planDateObj = new Date(plan.date);
+                    const diffTimeFuture = planDateObj - today;
+                    const diffDaysFuture = Math.ceil(diffTimeFuture / (1000 * 60 * 60 * 24));
+
+                    if (diffDaysFuture >= 0 && diffDaysFuture <= 10) {
+                        planDiv.classList.add('due-soon');
+                    } else if (diffDaysFuture < 0) {
+                        planDiv.classList.add('overdue');
+                    }
+
+                    planDiv.innerHTML = `
+                        <div class="plan-date-col">${formatDateToDDMMYYYY(plan.date.toISOString().split('T')[0])}</div>
+                        <div class="plan-type-col">${plan.type}</div>
                     `;
-                    maintenancePlansDisplay.appendChild(planItem);
+                    futureMaintenancesDisplay.appendChild(planDiv);
                 });
             } else {
-                maintenancePlansDisplay.innerHTML = '<p class="text-center">No hay planes de mantenimiento disponibles para el aire seleccionado.</p>';
+                futureMaintenancesDisplay.innerHTML = '<p class="text-center">No hay más mantenimientos futuros programados.</p>';
             }
         }
 
+
+        // --- Lógica para Alertas de Mantenimiento en el Monitor ---
+        function checkMaintenanceAlerts() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Ocultar todos los badges primero
+            document.getElementById('alert-a1-tools').style.display = 'none';
+            document.getElementById('alert-a2-tools').style.display = 'none';
+
+            // Verificar A1
+            let a1Alert = false;
+            const a1Upcoming = calculateAllUpcomingDates('A1');
+            for (const plan of a1Upcoming) {
+                const scheduledDate = new Date(plan.date);
+                scheduledDate.setHours(0, 0, 0, 0);
+                const diffTime = scheduledDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays >= 0 && diffDays <= 10) { // Si está programado para los próximos 10 días o es hoy
+                    a1Alert = true;
+                    break;
+                }
+            }
+            if (a1Alert) {
+                document.getElementById('alert-a1-tools').style.display = 'block';
+            }
+
+            // Verificar A2
+            let a2Alert = false;
+            const a2Upcoming = calculateAllUpcomingDates('A2');
+            for (const plan of a2Upcoming) {
+                const scheduledDate = new Date(plan.date);
+                scheduledDate.setHours(0, 0, 0, 0);
+                const diffTime = scheduledDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays >= 0 && diffDays <= 10) {
+                    a2Alert = true;
+                    break;
+                }
+            }
+            if (a2Alert) {
+                document.getElementById('alert-a2-tools').style.display = 'block';
+            }
+        }
+
+
         // Inicializar la vista al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            showSection(monitorSection); // Mostrar la sección de monitor al inicio
-            monitorTab.classList.add('active'); // Asegurar que la pestaña "Monitor" esté activa
-            updateMaintenanceChart(); // Inicializa la gráfica
-            displayMaintenancePlans(); // Inicializa los planes
+            showSection(monitorSection);
+            monitorTab.classList.add('active');
+            updateMaintenanceChart();
+            // No llamar displayMaintenancePlans aquí directamente, se llamará al seleccionar un aire
+            checkMaintenanceAlerts(); // Llama a la función de alerta al inicio
         });
 
         // Simulación de actualización de temperatura y estado (puedes reemplazar con datos reales)
@@ -793,11 +1010,9 @@
             const statusA1 = document.getElementById('status-a1');
             const statusA2 = document.getElementById('status-a2');
 
-            // Simular temperatura entre 20 y 28 grados
             const currentTemp = (Math.random() * (28 - 20) + 20).toFixed(1);
             tempElement.textContent = currentTemp;
 
-            // Simular estado encendido/apagado
             if (Math.random() > 0.5) {
                 statusA1.textContent = 'Encendido';
                 statusA1.classList.remove('text-danger');
@@ -808,7 +1023,7 @@
                 statusA1.classList.add('text-danger');
             }
 
-            if (Math.random() > 0.3) { // A2 es más probable que esté encendido
+            if (Math.random() > 0.3) {
                 statusA2.textContent = 'Encendido';
                 statusA2.classList.remove('text-danger');
                 statusA2.classList.add('text-success');
@@ -817,6 +1032,7 @@
                 statusA2.classList.remove('text-success');
                 statusA2.classList.add('text-danger');
             }
+            checkMaintenanceAlerts(); // Vuelve a verificar las alertas con cada actualización de datos
         }
         setInterval(updateMonitorData, 5000); // Actualiza cada 5 segundos
         updateMonitorData(); // Llama una vez al inicio
