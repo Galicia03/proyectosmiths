@@ -1,198 +1,826 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>SmitsInterconnect - Monitor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>SmitsInterconnect - Monitor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+        }
 
-  <style>
-    body {
-      background-color:#f0f8ff;
-      font-family: 'Arial', sans-serif;
-    }
+        .header {
+            background-color: #fff;
+            padding: 10px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #009;
+        }
 
-    .header {
-      background-color: #fff;
-      padding: 10px 30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #009;
-    }
+        .nav-bar {
+            display: flex;
+            border-bottom: 3px solid black;
+            background-color: #B5E3FC;
+			text-align: center!important; 
+        }
 
-    .nav-bar {
-      display: flex;
-      border-bottom: 3px solid black;
-      background-color: #B5E3FC;
-    }
+        .nav-link-custom {
+            flex: 1;
+            padding: 15px;
+            text-align: center!important; /* Aseguramos el centrado del texto */
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+            border: none;
+            transition: background-color 0.3s ease; /* Transición suave para el hover */
+        }
 
-    .nav-link-custom {
-      flex: 1;
-      padding: 15px;
-      text-align: center;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      color: black;
-      border: none;
-    }
+        .nav-link-custom:hover {
+            background-color: #8acdfc; /* Color más claro al pasar el ratón */
+			text-align: center!important; 
+        }
 
-    .nav-link-custom.active {
-      background-color: #08A4F8;
-      font-weight: bold;
-    }
+        .nav-link-custom.active {
+            background-color: #08A4F8;
+            font-weight: bold;
+			text-align: center!important; 
+        }
 
-    .section-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 30px;
-    }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 30px;
+			text-align:center;
+        }
 
-    .section-subtitle {
-      display: inline-block;
-      border: 2px solid black;
-      padding: 5px 25px;
-      font-size: 22px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+        .section-subtitle {
+            display: inline-block;
+            border: 2px solid black;
+            padding: 5px 25px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+			text-align: center!important; 
+        }
 
-    .temperature {
-      margin-top: 20px;
-      font-size: 18px;
-    }
+        .temperature {
+            margin-top: 20px;
+            font-size: 18px;
+        }
 
-    .fan-card {
-      border: 2px solid black;
-      padding: 15px;
-      position: relative;
-      text-align: center;
-      background-color: #fff;
-    }
+        .fan-card {
+            border: 2px solid black;
+            padding: 15px;
+            position: relative;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px; /* Bordes redondeados para las tarjetas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
 
-    .icon-row {
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      top: 30px;
-      left: 80px;
-      right: 80px;
-    }
+        .icon-row {
+            display: flex;
+            justify-content: space-around; /* Distribuir uniformemente y centrar los iconos */
+            position: absolute;
+            top: 15px; /* Ajustado para mejor posicionamiento */
+            left: 20px; /* Reducido para acercar los iconos al centro */
+            right: 20px; /* Reducido para acercar los iconos al centro */
+        }
 
-    .fan-icon {
-      font-size: 60px;
-      margin: 40px 0 10px;
-    }
+        .icon-row .icon-btn {
+            background: none;
+            border: none;
+            font-size: 24px; /* Iconos más grandes */
+            color: #333; /* Color oscuro para los iconos */
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 0 5px; /* Pequeño padding para mejorar clicabilidad */
+        }
 
-    .fan-label {
-      font-size: 14px;
-      font-weight: bold;
-	  text-align:left;
-    }
+        .icon-row .icon-btn:hover {
+            color: #08A4F8; /* Color al pasar el ratón */
+        }
 
-    .btn-plan {
-      margin-top: 10px;
-      border: 2px solid black;
-    }
+        .fan-icon {
+            font-size: 60px;
+            margin: 40px 0 10px;
+        }
 
-    .floating-btn {
-      position: fixed;
-      bottom: 15px;
-      right: 20px;
-      font-size: 22px;
-      font-weight: bold;
-      background-color: transparent;
-      border: none;
-      color: black;
-    }
-  </style>
+        .fan-label {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .btn-plan {
+            margin-top: 10px;
+            border: 2px solid black;
+            background-color: #08A4F8; /* Color de botón para que resalte */
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-plan:hover {
+            background-color: #007bff; /* Color al pasar el ratón */
+            color: white; /* Mantener texto blanco */
+        }
+
+        /* Estilos para los botones de mantenimiento */
+        .maintenance-button {
+            width: 80%;  
+            margin: 15px auto;  
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #000;
+            background-color: #B5E3FC;
+            color: #000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .maintenance-button:hover {
+            background-color: #08A4F8;
+            color: white;
+        }
+
+        /* Estilo para la flecha de regreso */
+        .back-arrow {
+            position: absolute;
+            top: 50px;
+            left: 20px;
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .back-arrow:hover {
+            color: #08A4F8;
+        }
+
+        /* Ocultar secciones por defecto */
+        .content-section {
+            display: none;
+        }
+
+        /* Estilo para el botón flotante de "Registrar Mantenimiento" */
+        .floating-add-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px; /* Tamaño del botón */
+            height: 60px; /* Tamaño del botón */
+            border-radius: 50%; /* Forma circular */
+            background-color: #08A4F8;
+            color: white;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 1000; /* Asegurar que esté por encima de otros elementos */
+        }
+
+        .floating-add-btn:hover {
+            background-color: #007bff;
+        }
+
+        /* Estilos específicos para la tabla de historial */
+        #historial-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #historial-content th, #historial-content td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #historial-content th {
+            background-color: #f2f2f2;
+        }
+
+        #historial-content .table-container {
+            max-height: 400px; /* Altura máxima para la tabla */
+            overflow-y: auto; /* Barra de desplazamiento vertical */
+            border: 1px solid #ccc;
+        }
+
+        #historial-content .search-bar {
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para el formulario de registrar */
+        #registrar-content .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        #registrar-content label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #registrar-content select, #registrar-content input[type="date"],
+        #registrar-content input[type="text"], #registrar-content input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #registrar-content .btn-submit {
+            background-color: #28a745; /* Botón verde para enviar */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        #registrar-content .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        /* Estilos para planes de mantenimiento */
+        #planes-content .maintenance-plan-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        #planes-content .maintenance-plan-item h5 {
+            color: #08A4F8;
+            font-weight: bold;
+        }
+        #planes-content .air-select-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <img src="img/smiths_interconnect.png" alt="Smiths Interconnect" style="max-height: 20px;">
-  </div>
-
-  <!-- Navigation -->
-  <div class="nav-bar">
-    <a href="#monitor" class="nav-link-custom active" id="monitor-tab">Monitor</a>
-    <a href="#mantenimiento" class="nav-link-custom" id="mantenimiento-tab">Mantenimiento</a>
-  </div>
-
-  <!-- Content Sections -->
-  <div id="monitor" class="container text-center mt-4">
-    <div class="section-title">Monitor</div>
-    <div class="section-subtitle">Área de producción</div>
-    <p class="temperature"> 🌡 Temperatura actual: __ °C</p>
-
-    <div class="row justify-content-center mt-4">
-      <div class="col-md-3 m-2">
-        <div class="fan-card">
-		<div class="fan-label">A1</div>
-          <div class="icon-row">
-			  <button class="icon-btn"><i class="bi bi-tools"></i></button>
-			  <button class="icon-btn"><i class="bi bi-exclamation-triangle"></i></button>
-			</div>
-          <div class="fan-icon">
-			  <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
-		</div>
-
-          
-          <button class="btn btn-outline-dark btn-sm btn-plan">Plan de mantenimiento</button>
-        </div>
-      </div>
-
-      <div class="col-md-3 m-2">
-        <div class="fan-card">
-		<div class="fan-label">A2</div>
-          <div class="icon-row">
-			  <button class="icon-btn"><i class="bi bi-tools"></i></button>
-			  <button class="icon-btn"><i class="bi bi-exclamation-triangle"></i></button>
-			</div>
-           <div class="fan-icon">
-			  <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
-		</div>
-          
-          <button class="btn btn-outline-dark btn-sm btn-plan">Plan de mantenimiento</button>
-        </div>
-      </div>
+    <div class="header">
+        <img src="img/smiths_interconnect.png" alt="Smiths Interconnect" style="max-height: 20px;">
     </div>
-  </div>
 
-  <!-- Sección mantenimiento (oculta por defecto, se puede usar JS para cambiar visibilidad) -->
-  <div id="mantenimiento" class="container text-center mt-5" style="display: none;">
-    <h2>Sección de Mantenimiento</h2>
-    <p>Aquí irá la información de mantenimiento...</p>
-  </div>
+    <div class="nav-bar">
+        <a href="#monitor" class="nav-link-custom active" id="monitor-tab" >Monitor</a>
+        <a href="#mantenimiento" class="nav-link-custom" id="mantenimiento-tab">Mantenimiento</a>
+    </div>
 
-  <button class="icon-btn" style="position: fixed; bottom: 20px; right: 20px;">
-  <i class="bi bi-plus"></i>
-</button>
+    <div id="monitor-section" class="container text-center mt-4 content-section active-section">
+        <div class="section-title">Monitor</div>
+        <div class="section-subtitle">Área de producción</div>
+        <p class="temperature"> 🌡 Temperatura actual: <span id="current-temperature">__</span> °C</p>
 
-  <!-- JS para cambiar tabs -->
-  <script>
-    const monitorTab = document.getElementById('monitor-tab');
-    const mantenimientoTab = document.getElementById('mantenimiento-tab');
-    const monitorSection = document.getElementById('monitor');
-    const mantenimientoSection = document.getElementById('mantenimiento');
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-4 m-2">
+                <div class="fan-card">
+                    <div class="fan-label">A1</div>
+                    <div class="icon-row">
+                        <button class="icon-btn" title="Historial A1"><i class="bi bi-tools"></i></button>
+                        <button class="icon-btn" title="Alerta A1"><i class="bi bi-exclamation-triangle"></i></button>
+                    </div>
+                    <div class="fan-icon">
+                        <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
+                    </div>
+                    <p class="mt-2 mb-0">Estado: <span id="status-a1" class="fw-bold text-success">Encendido</span></p>
+                    <button class="btn btn-outline-dark btn-sm btn-plan mt-3" onclick="showPlanes('A1')">Plan de mantenimiento</button>
+                </div>
+            </div>
 
-    monitorTab.addEventListener('click', () => {
-      monitorTab.classList.add('active');
-      mantenimientoTab.classList.remove('active');
-      monitorSection.style.display = 'block';
-      mantenimientoSection.style.display = 'none';
-    });
+            <div class="col-md-4 m-2">
+                <div class="fan-card">
+                    <div class="fan-label">A2</div>
+                    <div class="icon-row">
+                        <button class="icon-btn" title="Historial A2"><i class="bi bi-tools"></i></button>
+                        <button class="icon-btn" title="Alerta A2"><i class="bi bi-exclamation-triangle"></i></button>
+                    </div>
+                    <div class="fan-icon">
+                        <img src="img/ventilador.png" alt="Ventilador" class="img-fluid" style="max-height: 120px;">
+                    </div>
+                    <p class="mt-2 mb-0">Estado: <span id="status-a2" class="fw-bold text-danger">Apagado</span></p>
+                    <button class="btn btn-outline-dark btn-sm btn-plan mt-3" onclick="showPlanes('A2')">Plan de mantenimiento</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    mantenimientoTab.addEventListener('click', () => {
-      mantenimientoTab.classList.add('active');
-      monitorTab.classList.remove('active');
-      monitorSection.style.display = 'none';
-      mantenimientoSection.style.display = 'block';
-    });
-  </script>
+    <div id="mantenimiento-section" class="container text-center mt-5 content-section">
+        <div class="section-title">Opciones de Mantenimiento</div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-12">
+                <button class="btn maintenance-button" onclick="showContent('historial')">Historial</button>
+            </div>
+            <div class="col-md-12">
+                <button class="btn maintenance-button" onclick="showContent('registrar')">Registrar</button>
+            </div>
+            <div class="col-md-12">
+                <button class="btn maintenance-button" onclick="showContent('planes')">Planes de Mantenimiento</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="historial-content" class="container mt-5 content-section">
+        <i class="bi bi-arrow-left back-arrow" onclick="goBackToMantenimiento()"  title="Regresar"></i>
+        <h2 class="text-center mb-4">Historial de Mantenimientos</h2>
+
+        <div class="input-group mb-3 search-bar">
+            <input type="text" class="form-control" placeholder="Buscar por fecha, aire, supervisor..." id="historial-search">
+            <button class="btn btn-outline-secondary" type="button" id="button-search">Buscar</button>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Aire</th>
+                        <th>Tipo de Mantenimiento</th>
+                        <th>Supervisor</th>
+                        <th>Archivo</th>
+                    </tr>
+                </thead>
+                <tbody id="historial-table-body">
+                    <tr>
+                        <td>2024-05-20</td>
+                        <td>A1</td>
+                        <td>Preventivo</td>
+                        <td>Juan Pérez</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                    <tr>
+                        <td>2024-05-15</td>
+                        <td>A2</td>
+                        <td>Emergencia</td>
+                        <td>Ana García</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                     <tr>
+                        <td>2024-05-10</td>
+                        <td>A1</td>
+                        <td>Correctivo</td>
+                        <td>Carlos Ruíz</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                     <tr>
+                        <td>2024-05-01</td>
+                        <td>A2</td>
+                        <td>Preventivo</td>
+                        <td>Juan Pérez</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                    <tr>
+                        <td>2024-04-25</td>
+                        <td>A1</td>
+                        <td>Emergencia</td>
+                        <td>Ana García</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                     <tr>
+                        <td>2024-04-18</td>
+                        <td>A2</td>
+                        <td>Preventivo</td>
+                        <td>Carlos Ruíz</td>
+                        <td><a href="#">Ver archivo</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="text-center mt-5 mb-3">Gráfica de Tipos de Mantenimiento</h3>
+        <div class="chart-container" style="width: 80%; margin: auto;">
+            <canvas id="mantenimientoChart"></canvas>
+        </div>
+    </div>
+
+    <div id="registrar-content" class="container mt-5 content-section">
+        <i class="bi bi-arrow-left back-arrow" onclick="goBackToMantenimiento()" title="Regresar"></i>
+        <h2 class="text-center mb-4">Registrar Nuevo Mantenimiento</h2>
+        <form id="registro-form">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="fechaMantenimiento">Fecha:</label>
+                        <input type="date" class="form-control" id="fechaMantenimiento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="aireSeleccionado">Aire:</label>
+                        <select class="form-select" id="aireSeleccionado" required>
+                            <option value="">Selecciona un aire</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoMantenimiento">Tipo de Mantenimiento:</label>
+                        <select class="form-select" id="tipoMantenimiento" required>
+                            <option value="">Selecciona el tipo</option>
+                            <option value="Preventivo">Preventivo</option>
+                            <option value="Correctivo">Correctivo</option>
+                            <option value="Emergencia">Emergencia</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="supervisor">Supervisor:</label>
+                        <input type="text" class="form-control" id="supervisor" placeholder="Nombre del supervisor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="archivoMantenimiento">Subir Archivo:</label>
+                        <input type="file" class="form-control" id="archivoMantenimiento">
+                    </div>
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-success btn-submit">Registrar Mantenimiento</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="planes-content" class="container mt-5 content-section">
+        <i class="bi bi-arrow-left back-arrow" onclick="goBackToMantenimiento()" title="Regresar"></i>
+        <h2 class="text-center mb-4">Planes de Mantenimiento</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="air-select-container">
+                    <label for="selectAirPlan" class="form-label">Selecciona el Aire:</label>
+                    <select class="form-select" id="selectAirPlan" onchange="displayMaintenancePlans()">
+                        <option value="">Todos los aires</option>
+                        <option value="A1">A1</option>
+                        <option value="A2">A2</option>
+                    </select>
+                </div>
+
+                <div id="maintenance-plans-display">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="floating-add-btn" onclick="showContent('registrar')">
+        <i class="bi bi-plus"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Referencias a las secciones principales
+        const monitorSection = document.getElementById('monitor-section');
+        const mantenimientoSection = document.getElementById('mantenimiento-section');
+
+        // Referencias a las sub-secciones de mantenimiento
+        const historialContent = document.getElementById('historial-content');
+        const registrarContent = document.getElementById('registrar-content');
+        const planesContent = document.getElementById('planes-content');
+
+        // Referencias a las pestañas de navegación
+        const monitorTab = document.getElementById('monitor-tab');
+        const mantenimientoTab = document.getElementById('mantenimiento-tab');
+
+        // Referencia al botón flotante de agregar
+        const floatingAddBtn = document.querySelector('.floating-add-btn');
+
+        // Función para mostrar/ocultar secciones
+        function showSection(sectionToShow) {
+            const sections = [monitorSection, mantenimientoSection, historialContent, registrarContent, planesContent];
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('active-section'); // Quita la clase activa
+            });
+
+            sectionToShow.style.display = 'block';
+            sectionToShow.classList.add('active-section'); // Agrega la clase activa
+
+            // Control del botón flotante
+            if (sectionToShow === monitorSection || sectionToShow === mantenimientoSection) {
+                floatingAddBtn.style.display = 'block'; // Mostrar el botón flotante en Monitor y Mantenimiento
+            } else {
+                floatingAddBtn.style.display = 'none'; // Ocultar en las subsecciones
+            }
+        }
+
+        // Event Listeners para las pestañas de navegación
+        monitorTab.addEventListener('click', () => {
+            showSection(monitorSection);
+            monitorTab.classList.add('active');
+            mantenimientoTab.classList.remove('active');
+        });
+
+        mantenimientoTab.addEventListener('click', () => {
+            showSection(mantenimientoSection);
+            mantenimientoTab.classList.add('active');
+            monitorTab.classList.remove('active');
+        });
+
+        // Función para mostrar el contenido específico de Mantenimiento (Historial, Registrar, Planes)
+        function showContent(contentId) {
+            showSection(document.getElementById(contentId + '-content')); // Muestra la sub-sección
+            // Oculta las pestañas de navegación principales si estás en una subsección de mantenimiento
+            monitorTab.style.display = 'none';
+            mantenimientoTab.style.display = 'none';
+
+            // Actualizar la gráfica si se va a Historial
+            if (contentId === 'historial') {
+                updateMaintenanceChart();
+            }
+            // Mostrar planes si se va a Planes
+            if (contentId === 'planes') {
+                displayMaintenancePlans();
+            }
+        }
+
+        // Función para regresar a la sección principal de Mantenimiento
+        function goBackToMantenimiento() {
+            showSection(mantenimientoSection);
+            // Vuelve a mostrar las pestañas de navegación principales
+            monitorTab.style.display = '';
+            mantenimientoTab.style.display = '';
+            mantenimientoTab.classList.add('active'); // Asegura que la pestaña de Mantenimiento esté activa
+            monitorTab.classList.remove('active');
+        }
+
+        // Función para mostrar planes directamente desde la tarjeta del aire
+        function showPlanes(airId) {
+            showContent('planes');
+            document.getElementById('selectAirPlan').value = airId; // Selecciona el aire en el dropdown
+            displayMaintenancePlans(); // Muestra los planes para ese aire
+        }
+
+
+        // --- Lógica para Historial ---
+        const historialTableBody = document.getElementById('historial-table-body');
+        const historialSearch = document.getElementById('historial-search');
+
+        // Datos de ejemplo para el historial (puedes reemplazarlos con datos reales de tu backend)
+        let maintenanceHistory = [
+            { fecha: '2024-05-20', aire: 'A1', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2024-05-15', aire: 'A2', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2024-05-10', aire: 'A1', tipo: 'Correctivo', supervisor: 'Carlos Ruíz', archivo: '#' },
+            { fecha: '2024-05-01', aire: 'A2', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2024-04-25', aire: 'A1', tipo: 'Emergencia', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2024-04-18', aire: 'A2', tipo: 'Preventivo', supervisor: 'Carlos Ruíz', archivo: '#' },
+            { fecha: '2024-04-10', aire: 'A1', tipo: 'Preventivo', supervisor: 'Laura López', archivo: '#' },
+            { fecha: '2024-03-20', aire: 'A2', tipo: 'Emergencia', supervisor: 'Pedro Gómez', archivo: '#' },
+            { fecha: '2024-03-05', aire: 'A1', tipo: 'Correctivo', supervisor: 'Marta Díaz', archivo: '#' },
+            { fecha: '2024-02-15', aire: 'A2', tipo: 'Preventivo', supervisor: 'Juan Pérez', archivo: '#' },
+            { fecha: '2024-01-30', aire: 'A1', tipo: 'Preventivo', supervisor: 'Ana García', archivo: '#' },
+            { fecha: '2024-01-05', aire: 'A2', tipo: 'Emergencia', supervisor: 'Carlos Ruíz', archivo: '#' },
+        ];
+
+        function renderHistorialTable(data) {
+            historialTableBody.innerHTML = ''; // Limpiar la tabla
+            data.forEach(item => {
+                const row = historialTableBody.insertRow();
+                row.insertCell().textContent = item.fecha;
+                row.insertCell().textContent = item.aire;
+                row.insertCell().textContent = item.tipo;
+                row.insertCell().textContent = item.supervisor;
+                const fileCell = row.insertCell();
+                fileCell.innerHTML = `<a href="${item.archivo}">Ver archivo</a>`;
+            });
+        }
+
+        // Filtro de búsqueda
+        historialSearch.addEventListener('keyup', () => {
+            const searchTerm = historialSearch.value.toLowerCase();
+            const filteredData = maintenanceHistory.filter(item =>
+                item.fecha.toLowerCase().includes(searchTerm) ||
+                item.aire.toLowerCase().includes(searchTerm) ||
+                item.tipo.toLowerCase().includes(searchTerm) ||
+                item.supervisor.toLowerCase().includes(searchTerm)
+            );
+            renderHistorialTable(filteredData);
+        });
+
+        // Inicializar la tabla al cargar el historial
+        renderHistorialTable(maintenanceHistory);
+
+        // --- Gráfica de Mantenimientos (Chart.js) ---
+        let maintenanceChart; // Declarar la variable globalmente para poder destruirla y recrearla
+
+        function updateMaintenanceChart() {
+            const ctx = document.getElementById('mantenimientoChart').getContext('2d');
+
+            // Contar tipos de mantenimiento
+            const maintenanceTypes = {};
+            maintenanceHistory.forEach(item => {
+                maintenanceTypes[item.tipo] = (maintenanceTypes[item.tipo] || 0) + 1;
+            });
+
+            const labels = Object.keys(maintenanceTypes);
+            const data = Object.values(maintenanceTypes);
+
+            // Colores personalizados
+            const backgroundColors = [
+                'rgba(255, 99, 132, 0.6)', // Emergencia (Rojo)
+                'rgba(54, 162, 235, 0.6)', // Preventivo (Azul)
+                'rgba(255, 206, 86, 0.6)', // Correctivo (Amarillo)
+                'rgba(75, 192, 192, 0.6)', // Otros
+            ];
+            const borderColors = [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+            ];
+
+            if (maintenanceChart) {
+                maintenanceChart.destroy(); // Destruir la instancia anterior si existe
+            }
+
+            maintenanceChart = new Chart(ctx, {
+                type: 'bar', // Puedes cambiar a 'pie', 'doughnut', etc.
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# de Mantenimientos',
+                        data: data,
+                        backgroundColor: labels.map(label => {
+                            if (label === 'Emergencia') return backgroundColors[0];
+                            if (label === 'Preventivo') return backgroundColors[1];
+                            if (label === 'Correctivo') return backgroundColors[2];
+                            return backgroundColors[3]; // Para otros tipos
+                        }),
+                        borderColor: labels.map(label => {
+                            if (label === 'Emergencia') return borderColors[0];
+                            if (label === 'Preventivo') return borderColors[1];
+                            if (label === 'Correctivo') return borderColors[2];
+                            return borderColors[3];
+                        }),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0 // Asegura que los ticks sean enteros
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // No mostrar la leyenda si solo hay un dataset
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución de Tipos de Mantenimiento'
+                        }
+                    }
+                }
+            });
+        }
+
+
+        // --- Lógica para Registrar Nuevo Mantenimiento ---
+        const registroForm = document.getElementById('registro-form');
+
+        registroForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Evitar el envío por defecto del formulario
+
+            const fecha = document.getElementById('fechaMantenimiento').value;
+            const aire = document.getElementById('aireSeleccionado').value;
+            const tipo = document.getElementById('tipoMantenimiento').value;
+            const supervisor = document.getElementById('supervisor').value;
+            const archivoInput = document.getElementById('archivoMantenimiento');
+            const archivo = archivoInput.files.length > 0 ? archivoInput.files[0].name : 'N/A'; // Nombre del archivo o 'N/A'
+
+            if (fecha && aire && tipo && supervisor) {
+                // Aquí deberías enviar estos datos a tu backend o base de datos.
+                // Por ahora, solo lo agregaremos a nuestra simulación de historial.
+                const newMaintenance = {
+                    fecha: fecha,
+                    aire: aire,
+                    tipo: tipo,
+                    supervisor: supervisor,
+                    archivo: '#' // En una aplicación real, esto sería la URL del archivo subido
+                };
+                maintenanceHistory.push(newMaintenance); // Agrega al historial simulado
+                renderHistorialTable(maintenanceHistory); // Actualiza la tabla del historial
+
+                alert('Mantenimiento registrado con éxito: ' + JSON.stringify(newMaintenance));
+                registroForm.reset(); // Limpiar el formulario
+                goBackToMantenimiento(); // Regresar a la sección de mantenimiento
+            } else {
+                alert('Por favor, completa todos los campos obligatorios.');
+            }
+        });
+
+        // --- Lógica para Planes de Mantenimiento ---
+        const selectAirPlan = document.getElementById('selectAirPlan');
+        const maintenancePlansDisplay = document.getElementById('maintenance-plans-display');
+
+        const allMaintenancePlans = {
+            'A1': [
+                { type: 'Preventivo', frequency: 'Cada 6 meses', description: 'Revisión general, limpieza de filtros, verificación de niveles.' },
+                { type: 'Correctivo', frequency: 'Según sea necesario', description: 'Reparación de fallas detectadas, reemplazo de componentes.' },
+                { type: 'Emergencia', frequency: 'Cuando está averiado', description: 'Atención inmediata a fallas críticas que detienen el funcionamiento.' }
+            ],
+            'A2': [
+                { type: 'Preventivo', frequency: 'Cada 6 meses', description: 'Revisión general, limpieza de filtros, verificación de niveles.' },
+                { type: 'Correctivo', frequency: 'Según sea necesario', description: 'Reparación de fallas detectadas, reemplazo de componentes.' },
+                { type: 'Emergencia', frequency: 'Cuando está averiado', description: 'Atención inmediata a fallas críticas que detienen el funcionamiento.' }
+            ]
+        };
+
+        function displayMaintenancePlans() {
+            const selectedAir = selectAirPlan.value;
+            maintenancePlansDisplay.innerHTML = ''; // Limpiar el contenido anterior
+
+            let plansToDisplay = [];
+            if (selectedAir && allMaintenancePlans[selectedAir]) {
+                plansToDisplay = allMaintenancePlans[selectedAir];
+            } else {
+                // Si no se selecciona un aire o se selecciona "Todos los aires", mostrar todos
+                for (const air in allMaintenancePlans) {
+                    allMaintenancePlans[air].forEach(plan => {
+                        plansToDisplay.push({ ...plan, air: air }); // Agregar el aire al objeto del plan
+                    });
+                }
+            }
+
+            if (plansToDisplay.length > 0) {
+                plansToDisplay.forEach(plan => {
+                    const planItem = document.createElement('div');
+                    planItem.classList.add('maintenance-plan-item');
+                    let airLabel = plan.air ? ` (${plan.air})` : ''; // Mostrar el aire si se muestran todos
+                    planItem.innerHTML = `
+                        <h5>${plan.type} ${airLabel}</h5>
+                        <p><strong>Frecuencia:</strong> ${plan.frequency}</p>
+                        <p>${plan.description}</p>
+                    `;
+                    maintenancePlansDisplay.appendChild(planItem);
+                });
+            } else {
+                maintenancePlansDisplay.innerHTML = '<p class="text-center">No hay planes de mantenimiento disponibles para el aire seleccionado.</p>';
+            }
+        }
+
+        // Inicializar la vista al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection(monitorSection); // Mostrar la sección de monitor al inicio
+            monitorTab.classList.add('active'); // Asegurar que la pestaña "Monitor" esté activa
+            updateMaintenanceChart(); // Inicializa la gráfica
+            displayMaintenancePlans(); // Inicializa los planes
+        });
+
+        // Simulación de actualización de temperatura y estado (puedes reemplazar con datos reales)
+        function updateMonitorData() {
+            const tempElement = document.getElementById('current-temperature');
+            const statusA1 = document.getElementById('status-a1');
+            const statusA2 = document.getElementById('status-a2');
+
+            // Simular temperatura entre 20 y 28 grados
+            const currentTemp = (Math.random() * (28 - 20) + 20).toFixed(1);
+            tempElement.textContent = currentTemp;
+
+            // Simular estado encendido/apagado
+            if (Math.random() > 0.5) {
+                statusA1.textContent = 'Encendido';
+                statusA1.classList.remove('text-danger');
+                statusA1.classList.add('text-success');
+            } else {
+                statusA1.textContent = 'Apagado';
+                statusA1.classList.remove('text-success');
+                statusA1.classList.add('text-danger');
+            }
+
+            if (Math.random() > 0.3) { // A2 es más probable que esté encendido
+                statusA2.textContent = 'Encendido';
+                statusA2.classList.remove('text-danger');
+                statusA2.classList.add('text-success');
+            } else {
+                statusA2.textContent = 'Apagado';
+                statusA2.classList.remove('text-success');
+                statusA2.classList.add('text-danger');
+            }
+        }
+        setInterval(updateMonitorData, 5000); // Actualiza cada 5 segundos
+        updateMonitorData(); // Llama una vez al inicio
+    </script>
 
 </body>
 </html>
-
