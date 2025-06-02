@@ -1,0 +1,320 @@
+
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 10px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #009;
+        }
+
+        .nav-bar {
+            display: flex;
+            border-bottom: 3px solid black;
+            background-color: #B5E3FC;
+        }
+
+        .nav-link-custom {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-link-custom:hover {
+            background-color: #8acdfc;
+        }
+
+        .nav-link-custom.active {
+            background-color: #08A4F8;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            border: 2px solid black;
+            padding: 5px 25px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .temperature {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .fan-card {
+            border: 2px solid black;
+            padding: 15px;
+            position: relative;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-row {
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            right: 20px;
+        }
+
+        .icon-row .icon-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 0 5px;
+            position: relative; /* Necesario para posicionar el badge */
+        }
+
+        .icon-row .icon-btn:hover {
+            color: #08A4F8;
+        }
+
+        /* Estilo para el badge de alerta en el icono de herramientas */
+        .maintenance-alert-badge {
+            position: absolute;
+            top: -2px; /* Ajusta la posición vertical */
+            right: -2px; /* Ajusta la posición horizontal */
+            width: 12px;
+            height: 12px;
+            background-color: red;
+            border-radius: 50%;
+            display: none; /* Oculto por defecto */
+            border: 2px solid white; /* Pequeño borde blanco para visibilidad */
+        }
+
+        .fan-icon {
+            font-size: 60px;
+            margin: 40px 0 10px;
+        }
+
+        .fan-label {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .btn-plan {
+            margin-top: 10px;
+            border: 2px solid black;
+            background-color: #08A4F8;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-plan:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* Estilos para los botones de mantenimiento */
+        .maintenance-button {
+            width: 80%;
+            margin: 15px auto;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #000;
+            background-color: #B5E3FC;
+            color: #000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .maintenance-button:hover {
+            background-color: #08A4F8;
+            color: white;
+        }
+
+        /* Estilo para la flecha de regreso */
+        .back-arrow {
+            position: absolute;
+            top: 70px; /* Ajustado para bajar la flecha */
+            left: 20px;
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            z-index: 10;
+        }
+
+        .back-arrow:hover {
+            color: #08A4F8;
+        }
+
+        /* Ocultar secciones por defecto */
+        .content-section {
+            display: none;
+        }
+
+        /* Estilo para el botón flotante de "Registrar Mantenimiento" */
+        .floating-add-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #08A4F8;
+            color: white;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .floating-add-btn:hover {
+            background-color: #007bff;
+        }
+
+        /* Estilos específicos para la tabla de historial */
+        #historial-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #historial-content th, #historial-content td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #historial-content th {
+            background-color: #f2f2f2;
+        }
+
+        #historial-content .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+        }
+
+        #historial-content .search-bar {
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para el formulario de registrar */
+        #registrar-content .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        #registrar-content label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        #registrar-content select, #registrar-content input[type="date"],
+        #registrar-content input[type="text"], #registrar-content input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #registrar-content .btn-submit {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s ease;
+        }
+
+        #registrar-content .btn-submit:hover {
+            background-color: #218838;
+        }
+
+        /* Estilos para planes de mantenimiento */
+        #planes-content .air-select-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* Estilo para las secciones de planes (similar a la imagen) */
+        .plan-section-box {
+            border: 2px solid black;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .plan-section-box h4 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Estilo para el plan de mantenimiento individual (similar a la imagen) */
+        .single-plan-entry {
+            display: flex;
+            border: 1px solid #000;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .single-plan-entry .plan-date-col {
+            flex: 0 0 120px; /* Ancho fijo para la fecha */
+            padding: 8px;
+            border-right: 1px solid #000;
+            font-weight: bold;
+            background-color: #f2f2f2; /* Un poco de sombreado para la fecha */
+        }
+
+        .single-plan-entry .plan-type-col {
+            flex-grow: 1;
+            padding: 8px;
+        }
+
+        /* Estilo para la lista de futuros mantenimientos */
+        .future-plans-list {
+            max-height: 250px; /* Altura máxima para la lista con scroll */
+            overflow-y: auto;
+            border: 1px solid #ccc; /* Borde para la lista, si se desea */
+        }
+
+        /* Resaltar planes próximos o atrasados */
+        .single-plan-entry.due-soon {
+            background-color: #fff8e1; /* Fondo amarillo claro */
+            border-left: 4px solid orange;
+        }
+        .single-plan-entry.overdue {
+            background-color: #ffebee; /* Fondo rojo claro */
+            border-left: 4px solid red;
+        }
