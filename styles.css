@@ -246,7 +246,7 @@
         }
 
         #registrar-content .btn-submit {
-            background-color: #28a745;
+            background-color: #08A4F8;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -254,10 +254,11 @@
             cursor: pointer;
             font-size: 16px;
             transition: background-color 0.2s ease;
+			margin-bottom:40px;
         }
 
         #registrar-content .btn-submit:hover {
-            background-color: #218838;
+            background-color: #08A4F8;
         }
 
         /* Estilos para planes de mantenimiento */
