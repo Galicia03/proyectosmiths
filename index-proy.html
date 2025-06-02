@@ -710,7 +710,7 @@
                         tempElement.textContent = valor.toFixed(2);
 
                         // Encender o apagar según temperatura
-                        if (valor > 23) {
+                        if (valor > 0) {
                             statusA1.textContent = 'Encendido';
                             statusA1.classList.remove('text-danger');
                             statusA1.classList.add('text-success');
@@ -719,11 +719,11 @@
                             statusA2.classList.remove('text-danger');
                             statusA2.classList.add('text-success');
                         } else {
-                            statusA1.textContent = 'Apagado';
+                            statusA1.textContent = 'Encendido';
                             statusA1.classList.remove('text-success');
                             statusA1.classList.add('text-danger');
 
-                            statusA2.textContent = 'Apagado';
+                            statusA2.textContent = 'Encendido';
                             statusA2.classList.remove('text-success');
                             statusA2.classList.add('text-danger');
                         }
